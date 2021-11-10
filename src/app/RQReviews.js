@@ -8,7 +8,9 @@ function RQReviews(props) {
     () => {
       return axios.get("http://localhost:4444/reviews");
     },
-    { cacheTime: 5000 }
+    {
+      staleTime: 30000, //Default 0sec
+    }
   );
   console.log({ isLoading, isFetching });
   if (isLoading) {
