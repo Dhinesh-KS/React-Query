@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export const Products = () => {
+const Products = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
 
@@ -25,3 +25,5 @@ export const Products = () => {
     </>
   );
 };
+
+export default Products;

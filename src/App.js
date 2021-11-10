@@ -2,11 +2,23 @@ import React from "react";
 import { hot } from "react-hot-loader";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { Home } from "./app/Home";
-import { Products } from "./app/Products";
-import { RQReviews } from "./app/RQReviews";
+// import Home from "./app/Home";
+// import Products from "./app/Products";
+// import RQReviews from "./app/RQReviews";
+import loadable from "@loadable/component";
 import "./sass/app.scss";
 import "./index.css";
+
+//Roue based code splitting
+const Home = loadable(() => import("./app/Home"), {
+  fallback: <h1>Loading...</h1>,
+});
+const Products = loadable(() => import("./app/Products"), {
+  fallback: <h1>Loading...</h1>,
+});
+const RQReviews = loadable(() => import("./app/RQReviews"), {
+  fallback: <h1>Loading...</h1>,
+});
 
 const queryClient = new QueryClient();
 

@@ -2,12 +2,15 @@ import React from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 
-export function RQReviews(props) {
-  const { isLoading, data } = useQuery("reviews", () => {
+function RQReviews(props) {
+  const { isLoading, data, isError, error } = useQuery("reviews", () => {
     return axios.get("http://localhost:4444/reviews");
   });
   if (isLoading) {
     return <h2>Loading...</h2>;
+  }
+  if (isError) {
+    return <h2>{error.message}</h2>;
   }
   return (
     <>
@@ -19,3 +22,5 @@ export function RQReviews(props) {
     </>
   );
 }
+
+export default RQReviews;
