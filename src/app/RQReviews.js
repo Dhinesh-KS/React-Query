@@ -3,9 +3,14 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 function RQReviews(props) {
-  const { isLoading, data, isError, error } = useQuery("reviews", () => {
-    return axios.get("http://localhost:4444/reviews");
-  });
+  const { isLoading, data, isError, error, isFetching } = useQuery(
+    "reviews",
+    () => {
+      return axios.get("http://localhost:4444/reviews");
+    },
+    { cacheTime: 5000 }
+  );
+  console.log({ isLoading, isFetching });
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
