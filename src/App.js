@@ -1,34 +1,34 @@
-import React, { Component } from "react";
+import React from "react";
 import { hot } from "react-hot-loader";
-import Typography from "@material-ui/core/Typography";
-import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import "./sass/app.scss";
 import "./index.css";
-import logo from "./images/icon.png";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Home } from "./app/Home";
+import { SuperHeroes } from "./app/SuperHeroes";
 
-class App extends Component {
-  state = {
-    counter: 0,
-  };
-
-  handleClick = () => {
-    this.setState((prevState) => {
-      return { counter: prevState.counter + 1 };
-    });
-  };
-  render() {
-    return (
-      <div className="App">
-        <h1>Base Project Setup!!!!</h1>
-        <Typography variant="h1" component="h2" gutterBottom align="center">
-          Material UI
-        </Typography>
-        <p>{`The count now is: ${this.state.counter}`}</p>
-        <img src={logo} style={{ width: "50px", height: "50px" }} alt="logo" />
-        <AccessAlarmIcon/>
-        <button onClick={this.handleClick}>Click here</button>
+function App() {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/super-heroes">Traditional Super Heroes</Link>
+            </li>
+            <li>
+              <Link to="/rq-super-heroes">RQ Super Heroes</Link>
+            </li>
+          </ul>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/super-heroes" element={<SuperHeroes />} />
+        </Routes>
       </div>
-    );
-  }
+    </Router>
+  );
 }
 export default hot(module)(App);
