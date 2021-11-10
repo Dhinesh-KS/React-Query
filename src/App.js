@@ -2,6 +2,7 @@ import React from "react";
 import { hot } from "react-hot-loader";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 // import Home from "./app/Home";
 // import Products from "./app/Products";
 // import RQReviews from "./app/RQReviews";
@@ -47,6 +48,7 @@ function App() {
           </Routes>
         </div>
       </Router>
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   );
 }
