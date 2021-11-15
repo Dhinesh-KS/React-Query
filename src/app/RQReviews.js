@@ -3,17 +3,15 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 function RQReviews(props) {
-  const { isLoading, data, isError, error, isFetching } = useQuery(
+  const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
     "reviews",
     () => {
       return axios.get("http://localhost:4444/reviews");
     },
-    {
-      staleTime: 30000, //Default 0sec
-    }
+    { enabled: false }
   );
   console.log({ isLoading, isFetching });
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <h2>Loading...</h2>;
   }
   if (isError) {
@@ -25,6 +23,7 @@ function RQReviews(props) {
         {data?.data.map((item, index) => {
           return <div key={index}>{item.comment}</div>;
         })}
+        <button onClick={refetch}>Fetch</button>
       </div>
     </>
   );
