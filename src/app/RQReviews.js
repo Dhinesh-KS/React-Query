@@ -3,12 +3,18 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 function RQReviews(props) {
+  const onSuccess = (res) => {
+    console.log("Success", res);
+  };
+  const onError = (err) => {
+    console.log("Error", err);
+  };
   const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
     "reviews",
     () => {
-      return axios.get("http://localhost:4444/reviews");
+      return axios.get("http://localhost:4444/reviews1");
     },
-    { enabled: false }
+    { onSuccess: onSuccess, onError: onError }
   );
   console.log({ isLoading, isFetching });
   if (isLoading || isFetching) {
