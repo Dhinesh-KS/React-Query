@@ -12,9 +12,16 @@ function RQReviews(props) {
   const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
     "reviews",
     () => {
-      return axios.get("http://localhost:4444/reviews1");
+      return axios.get("http://localhost:4444/reviews");
     },
-    { onSuccess: onSuccess, onError: onError }
+    {
+      onSuccess: onSuccess,
+      onError: onError,
+      select: (data) => {
+        const filteredData = data.data.map((item) => item.comment);
+        return filteredData;
+      },
+    }
   );
   console.log({ isLoading, isFetching });
   if (isLoading || isFetching) {
@@ -26,8 +33,8 @@ function RQReviews(props) {
   return (
     <>
       <div>
-        {data?.data.map((item, index) => {
-          return <div key={index}>{item.comment}</div>;
+        {data.map((item, index) => {
+          return <div key={index}>{item}</div>;
         })}
         <button onClick={refetch}>Fetch</button>
       </div>
