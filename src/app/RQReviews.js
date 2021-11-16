@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 function RQReviews(props) {
@@ -17,10 +18,10 @@ function RQReviews(props) {
     {
       onSuccess: onSuccess,
       onError: onError,
-      select: (data) => {
-        const filteredData = data.data.map((item) => item.comment);
-        return filteredData;
-      },
+      // select: (data) => {
+      //   const filteredData = data.data.map((item) => item.comment);
+      //   return filteredData;
+      // },
     }
   );
   console.log({ isLoading, isFetching });
@@ -33,8 +34,12 @@ function RQReviews(props) {
   return (
     <>
       <div>
-        {data.map((item, index) => {
-          return <div key={index}>{item}</div>;
+        {data?.data.map((item, index) => {
+          return (
+            <div key={index}>
+              <Link to={`/reviews/${item.id}`}>{item.comment}</Link>
+            </div>
+          );
         })}
         <button onClick={refetch}>Fetch</button>
       </div>

@@ -20,6 +20,9 @@ const Products = loadable(() => import("./app/Products"), {
 const RQReviews = loadable(() => import("./app/RQReviews"), {
   fallback: <h1>Loading...</h1>,
 });
+const DetailedPage = loadable(() => import("./app/DetailedPage"), {
+  fallback: <h1>Loading...</h1>,
+});
 
 const queryClient = new QueryClient();
 
@@ -45,6 +48,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/product-category" element={<Products />} />
             <Route path="/reviews" element={<RQReviews />} />
+            <Route path="/reviews/:id" element={<DetailedPage />} />
           </Routes>
         </div>
       </Router>
