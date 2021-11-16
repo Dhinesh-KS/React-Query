@@ -23,6 +23,9 @@ const RQReviews = loadable(() => import("./app/RQReviews"), {
 const DetailedPage = loadable(() => import("./app/DetailedPage"), {
   fallback: <h1>Loading...</h1>,
 });
+const ParallelQueries = loadable(() => import("./app/ParallelQueries"), {
+  fallback: <h1>Loading...</h1>,
+});
 
 const queryClient = new QueryClient();
 
@@ -42,6 +45,9 @@ function App() {
               <li>
                 <Link to="/reviews">Reviews</Link>
               </li>
+              <li>
+                <Link to="/parallelqueries">Parallel Queries</Link>
+              </li>
             </ul>
           </nav>
           <Routes>
@@ -49,6 +55,7 @@ function App() {
             <Route path="/product-category" element={<Products />} />
             <Route path="/reviews" element={<RQReviews />} />
             <Route path="/reviews/:id" element={<DetailedPage />} />
+            <Route path="/parallelqueries" element={<ParallelQueries />} />
           </Routes>
         </div>
       </Router>
